@@ -115,9 +115,9 @@ Main.onLoad = function()
 Main.onUnload = function()
 {
 	alert("onUnload ======IME==============================================");
-	if (imeBox) {
+	/*if (imeBox) {
 		imeBox._blur();
-	}
+	}*/
 	if (imeBoxLoginUser) {
 		imeBoxLoginUser._blur();
 	}
@@ -153,18 +153,50 @@ Main.keyDown = function()
 				$('#prezi-player').removeClass('focusin');
 				$('#prezi-player').css('display','none');
 				$('#preziapiplayer').html('');
-				$('#'+$( ".focusPrez" ).parent().attr('id')).addClass('focusin');
+				//$('#'+$( ".focusPrez" ).parent().attr('id')).addClass('focusin');
+				preziAPI.carousel.current();
 				Main.spinner.stop();
+				//$('#footer').css('width','100%');
+				keyHelper(itemsHelp ={
+						'red':'Logout',
+			            //'green':'Buscar',
+			            'yellow':'Help',
+			            //'blue':'Fav.',
+			            'leftright' :'Navigate',
+			            'enter': 'Enter',
+			            'return': 'Back',
+			            'exit':'Exit'
+			  	 });
 			
+			}
+			if(inFocus.elfocus == 'dropStep'){
+				$('#dropStep').removeClass('focusin focusList');
+				$('#divPopup').css('display','none');
+				$('#divPopup').html('');
+				$('#prezi-player').addClass('focusin');
+				//$('#divPopup').html(stepUp);
+				//$('.overlay').css('display','none');
+				//$('.loading').css('display','none');
+				//$('#divPopup').css('top','10px');
+				//$('#divPopup').css('left','685px');
+				
+				//$('#dropStep').html('');
+				
 			}
 			break;
 		case tvKey.KEY_LEFT:
 			alert("LEFT");
 			alert(inFocus.pafocus);
 			
-			if(inFocus.pafocus == 'presentations'){
+			if(inFocus.pafocus == 'carousel'){
 				alert(inFocus.elfocus);
-				if($('#'+inFocus.elfocus).is(':first-child')){
+				
+				preziAPI.carousel.prev();
+				preziAPI.carousel.current();
+				preziAPI.carousel.currentNext();
+				
+				
+				/*if($('#'+inFocus.elfocus).is(':first-child')){
 					$('#'+inFocus.elfocus).removeClass('focusin');
 					$('#'+inFocus.elfocus+' div').removeClass('focusPrez');
 					$("ul#"+inFocus.pafocus+" li:last").addClass("focusin");
@@ -175,7 +207,7 @@ Main.keyDown = function()
 				$('#'+inFocus.elfocus+' div').removeClass('focusPrez');
 				$('#'+$('#'+inFocus.elfocus).prev().attr('id')+' div').addClass('focusPrez');
 				$('#'+inFocus.elfocus).prev().addClass('focusin ');
-				}
+				}*/
 				//$('#'+inFocus.elfocus).prev().attr('id');
 			}
 			if(inFocus.elfocus == 'prezi-player'){
@@ -185,9 +217,15 @@ Main.keyDown = function()
 		case tvKey.KEY_RIGHT:
 			alert("RIGHT");
 			alert(inFocus.pafocus);
-			if(inFocus.pafocus == 'presentations'){
+			if(inFocus.pafocus == 'carousel'){
 				alert(inFocus.elfocus);
-				if($('#'+inFocus.elfocus).is(':last-child')){
+				
+				preziAPI.carousel.next();
+				preziAPI.carousel.current();
+				preziAPI.carousel.currentPrevious();
+				
+				
+				/*if($('#'+inFocus.elfocus).is(':last-child')){
 					$('#'+inFocus.elfocus).removeClass('focusin');
 					$('#'+inFocus.elfocus+' div').removeClass('focusPrez');
 					$("ul#"+inFocus.pafocus+" li:first").addClass("focusin");
@@ -198,7 +236,7 @@ Main.keyDown = function()
 					$('#'+inFocus.elfocus+' div').removeClass('focusPrez');
 					$('#'+inFocus.elfocus).next().addClass('focusin');
 					$('#'+$('#'+inFocus.elfocus).next().attr('id')+' div').addClass('focusPrez');
-				}
+				}*/
 			}
 			if(inFocus.elfocus == 'prezi-player'){
 				preziAPI.preziPlayer.flyToNextStep();
@@ -206,23 +244,48 @@ Main.keyDown = function()
 			break;
 		case tvKey.KEY_UP:
 			alert("UP");
+			if(inFocus.elfocus == 'dropStep'){
+				var step_idx = parseInt($('#'+inFocus.elfocus).html());
+				if (step_idx < preziAPI.stepCount){
+				$('#'+inFocus.elfocus).html(step_idx + 1);
+				}
+			}
 			break;
 		case tvKey.KEY_DOWN:
 			alert("DOWN");
+			if(inFocus.elfocus == 'dropStep'){
+				var step_idx = parseInt($('#'+inFocus.elfocus).html());
+				//$('#'+inFocus.elfocus).html()
+				if (step_idx > 0){
+				$('#'+inFocus.elfocus).html(step_idx - 1);
+				}
+			}
 			break;
 		case tvKey.KEY_ENTER:
 		case tvKey.KEY_PANEL_ENTER:
 			alert("ENTER");
 			alert(inFocus.elfocus);
-			alert($('#'+inFocus.elfocus+' div').attr('data-resource'));
+			if(inFocus.elfocus == 'dropStep'){
+				var step_idx = $('#'+inFocus.elfocus).html();
+				alert(step_idx+'-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-step IDX');
+				preziAPI.preziPlayer.flyToStep(step_idx);
+			}
+			if(inFocus.pafocus == 'carousel'){
+			alert($('#'+inFocus.elfocus+' a').attr('data-resource'));
 			$('#'+inFocus.elfocus).removeClass('focusin');
-			
 			Main.playerID = inFocus.elfocus;
 			preziAPI.playerView();
+			}
 			break;
 		case tvKey.KEY_RED:
 			alert("RED");
 			Main.loginAction();
+			break;
+		case tvKey.KEY_YELLOW:
+			alert('YELLOW');
+			if(inFocus.pafocus == 'presentations'){
+				//show help pverlay
+			}
 			break;
 		case tvKey.KEY_BLUE:
 			alert("BLUE");

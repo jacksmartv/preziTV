@@ -151,7 +151,7 @@ body
 	left: 0;
 	width: 960px;
 	height: 450px;
-	border:1px solid red;
+	/*border:1px solid red;*/
 	color:#333333;
 }
 #presentations{
@@ -197,17 +197,18 @@ body
 	height:35px;
 	position:fixed;
 	bottom:0;
-	left:0;
+	right:0;
 	background-color:#000000;
 	background-image: url("../../images/keyhelp_bg_alpha.png");
 	background-position: top left;
 	background-repeat: repeat-x;
+	z-index:250;
 }
 #keyhelp{
-	width:960px;
+	width:600px;
 	/*list-style-type: none;*/
-	position:relative;
-	left: 0; 	
+	position:absolute;
+	right: 0px; 	
 }
 #keyhelp li{
 	/*float: right;*/
@@ -292,7 +293,7 @@ body
 	left:700px;
 	width: 250px;
 	height: 200px;
-	border:4px solid #DCDCDC;
+	border:4px solid #6666ff;
 	display:none;
 	z-index:252;
 	color:#333333;
@@ -315,7 +316,7 @@ body
 	border:4px solid blue;
 }
 .focusList{
-	border-color: blue;
+	border:2px solid blue;
 	
 }
 .redButton{

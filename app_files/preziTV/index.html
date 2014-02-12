@@ -3,7 +3,6 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>preziTV</title>
-
 		<!-- TODO : Common API -->		
 		<script type="text/javascript" src="$MANAGER_WIDGET/Common/API/TVKeyValue.js"></script>
 		<script type="text/javascript" src="$MANAGER_WIDGET/Common/API/Widget.js"></script>
@@ -12,24 +11,21 @@
 		<script type="text/javascript" src="$MANAGER_WIDGET/Common/Util/Include.js"></script>
     	<script type="text/javascript" src="$MANAGER_WIDGET/Common/Util/Language.js"></script>
 		<script type='text/javascript' src='$MANAGER_WIDGET/Common/OpenSrc/jquery-1.4.2.min.js'></script>
-
 		<!-- TODO : Javascript code -->
 		<script type="application/javascript" src="API/preziAPI.js"></script>
  		<script type="text/javascript" src="API/prezi_player.js"></script>
- 		<!-- <script type="text/javascript" src="helpers/swfobject/swfobject.js"></script> -->
+    	<script src="helpers/jquery.featureCarousel.js" type="text/javascript" charset="utf-8"></script>
  		<script type="text/javascript" src="helpers/spin.js" ></script>
  		<script type="text/javascript" src="helpers/netCheck.js"></script>
- 		<script type="text/javascript" src="helpers/keyhelper.js"></script>
+ 		<script type="text/javascript" src="helpers/keyhelp.js"></script>
  		<script type="text/javascript" src="helpers/loginShell.js"></script>
 		<script language="javascript" type="text/javascript" src="app/javascript/Main.js"></script>
-
 		<!-- TODO : Style sheets code -->
+		<link rel="stylesheet" href="helpers/feature-carousel.css" type="text/css" charset="utf-8" />
 		<link rel="stylesheet" href="app/stylesheets/Main.css" type="text/css">
-
+		
 		<!-- TODO: Plugins -->
-
 	</head>
-
 	<body onload="Main.onLoad();" onunload="Main.onUnload();">
 		<!-- Common Objects / Scripts IME -->
 		<object id='pluginAudio' border=0 classid='clsid:SAMSUNG-INFOLINK-AUDIO'></object>
@@ -43,7 +39,6 @@
 		 <div id="splashScreen"><img src="images/splash.png" height=400 width=400 /></div>
 		 <div id="loginScreen"></div>
 		 <div id="container">
-		 	
 		 	<div id="header">
 		 		<div id="logo"><img src="images/prezi_horizontal.png"></div>
 		 	</div>
@@ -58,13 +53,8 @@
 		<div id="helpOver" class="helpoverlay"></div>
 		<div id = "overlay" class="overlay"></div>
 		<div id="prezi-player"><div id="preziapiplayer"></div></div>
-		
-		
-		<div id="loading"><div id="spin"></div></div>	
-
+		<div id="loading"><div id="spin"></div></div>
 		<!-- Dummy anchor as focus for key events -->
 		<a href="javascript:void(0);" id="anchor" onkeydown="Main.keyDown();"></a>
-
-		<!-- TODO: your code here -->
 	</body>
 </html>
